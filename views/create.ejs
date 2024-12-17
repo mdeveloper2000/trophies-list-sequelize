@@ -1,0 +1,75 @@
+<%- include("./partials/header"); %>
+
+<div class="container is-max-tablet my-6">
+    <form class="box">
+        <h1 class="title">New Game</h1>        
+        <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+              <input class="input" type="text" name="gametitle" placeholder="Game title" maxlength="50">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Year</label>
+            <div class="control">
+              <input class="input" type="text" name="gameyear" placeholder="Released year" maxlength="4">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Multiplayer</label>
+            <div class="control">
+                <div class="select">
+                    <select name="multiplayer" id="multiplayer">
+                        <option value="">Select option</option>
+                        <option value="YES">YES</option>
+                        <option value="NO" selected>NO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Platinum</label>
+            <div class="control">
+                <div class="select">
+                    <select name="platinum" id="platinum">
+                        <option>Select option</option>
+                        <option value="YES" selected>YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Details</label>
+            <div class="control">
+              <textarea class="textarea has-fixed-size" name="details" id="details" maxlength="255" placeholder="Game details"></textarea>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-success">
+                    <span class="icon is-small">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span>Save</span>
+                </button>
+            </div>
+            <div class="control">
+                <a class="button is-danger" href="/">
+                    <span class="icon is-small">
+                        <i class="fa-solid fa-xmark"></i>
+                    </span>
+                    <span>Cancel</span>
+                </a>
+            </div>
+        </div>
+        <div class="notification is-danger is-light is-hidden">
+            <span class="message has-text-weight-bold"></span>
+            <button class="delete"></button>
+        </div>
+    </form>
+    <script src="/js/create.js"></script>
+    <script src="/js/notification.js"></script>
+</div>
+
+<%- include("./partials/footer"); %>

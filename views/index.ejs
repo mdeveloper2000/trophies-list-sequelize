@@ -1,0 +1,134 @@
+<%- include("./partials/header"); %>
+
+<div class="container my-5">
+    <div class="columns">
+        <div class="column is-8">
+            <a class="button is-success" href="/create">
+                <span class="icon is-small">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </span>
+                <span>New Game</span>
+            </a>
+        </div>
+        <div class="column">
+            <div class="control">                
+                <div class="select">
+                    <select name="order-select" id="order-select">
+                        <option value="">Order by</option>
+                        <option value="gametitle">Title</option>
+                        <option value="gameyear" selected>Year</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="column is-4">            
+            <div class="field has-addons">
+                <div class="control">
+                    <input class="input" type="text" id="search-input" placeholder="Search a game">
+                </div>
+                <div class="control">
+                    <button class="button is-info" id="search-button">
+                        <span class="icon is-small">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column is-full">
+            <div class="notification is-danger is-light is-hidden">
+                <span class="message has-text-weight-bold"></span>
+                <button class="delete"></button>
+            </div>
+        </div>
+    </div>
+    <div class="columns">        
+        <% if(games.length > 0) { %>
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead>
+                    <tr class="is-info">
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Multiplayer</th>
+                        <th>Platinum</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% games.forEach(function(game) { %>
+                        <tr>
+                            <td><%= game.gametitle %></td>
+                            <td><%= game.gameyear %></td>
+                            <td><%= game.multiplayer %></td>
+                            <td><%= game.platinum %></td>
+                            <td>
+                                <a class="button is-link" href="/game/show/<%= game.id %>">
+                                    <span class="icon is-small">
+                                        <i class="fa-solid fa-rectangle-list"></i>
+                                    </span>
+                                    <span>Show</span>
+                                </a>
+                                <a class="button is-warning" href="/game/<%= game.id %>">
+                                    <span class="icon is-small">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </span>
+                                    <span>Edit</span>
+                                </a>
+                                <button class="button is-danger js-modal-trigger" data-target="modal-js-example" onclick="setGameDeleteId('<%= game.id %>')">
+                                    <span class="icon is-small">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </span>
+                                    <span>Delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <div class="column is-full has-background-link has-text-centered">
+                <i class="fa-solid fa-trophy fa-10x has-text-warning"></i>
+                <p class="has-text-light is-size-4">
+                    No games have been registered yet
+                </p>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<div id="modal-js-example" class="modal">
+    <div class="modal-background"></div>  
+    <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Warning</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body has-text-danger is-size-4 has-text-weight-bold">
+            Are you sure you want to delete this game?
+        </section>
+        <footer class="modal-card-foot">
+          <div class="buttons">
+            <button class="button is-danger" id="delete-button">
+                <div class="block">                    
+                    <i class="fa-solid fa-trash"></i> Yes, delete
+                </div>                
+            </button>
+            <a class="button is-info">
+                <div class="block">
+                    <i class="fa-solid fa-xmark"></i> No, cancel
+                </div>                
+            </a>
+          </div>
+        </footer>
+    </div>
+    <input type="hidden" id="id_delete_game">
+</div>
+
+<script src="/js/delete.js"></script>
+<script src="/js/search.js"></script>
+<script src="/js/notification.js"></script>
+
+<%- include("./partials/footer"); %>

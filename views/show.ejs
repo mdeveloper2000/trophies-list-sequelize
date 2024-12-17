@@ -1,0 +1,45 @@
+<%- include("./partials/header"); %>
+
+<div class="container is-max-tablet my-6">
+    <div class="box">
+        <div class="card">
+            <div class="card-image has-text-centered">
+                <i class="fa-solid fa-trophy fa-5x mt-5"></i>
+            </div>
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-left">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4"><%= game.gametitle %></p>
+                        <p class="subtitle is-6"><%= game.gameyear %></p>
+                    </div>
+                </div>          
+                <div class="content">                
+                    <span class="tag is-large <%= game.multiplayer === 'YES' ? 'is-info' : 'is-danger' %>">
+                        <div class="block">
+                            <i class="fa-solid fa-globe"></i>
+                            <%= game.multiplayer === "YES" ? "Multiplayer" : "No multiplayer" %>
+                        </div>
+                    </span>
+                    <span class="tag is-large <%= game.platinum === 'YES' ? 'is-warning' : 'is-danger' %>">
+                        <div class="block">
+                            <i class="fa-solid fa-trophy"></i>
+                            <%= game.platinum === "YES" ? "Platinum" : "No platinum" %>
+                        </div>
+                    </span>
+                    <% if(game.details !== "") { %>
+                        <div class="block mt-5">
+                            <span class="tag is-large is-link is-light py-3" style="height: auto !important; white-space: unset !important;">
+                                <%= game.details %>
+                            </span>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<%- include("./partials/footer"); %>
